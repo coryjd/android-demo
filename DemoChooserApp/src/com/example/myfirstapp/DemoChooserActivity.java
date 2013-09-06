@@ -13,6 +13,7 @@ public class DemoChooserActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Log.i("info", this.getClass().getName() + " onCreate");
         setContentView(R.layout.activity_demochooser);
     }
 

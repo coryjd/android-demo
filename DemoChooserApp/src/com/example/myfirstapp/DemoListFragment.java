@@ -16,6 +16,13 @@ public class DemoListFragment extends ListFragment
     int mCurCheckPosition = 0;
     
     @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        Log.i("info", this.getClass().getName() + " onCreate");
+    }
+    
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) 
     {
         super.onActivityCreated(savedInstanceState);
@@ -61,7 +68,7 @@ public class DemoListFragment extends ListFragment
         else
         {
             Intent intent = new Intent();
-            intent.setClass(getActivity(), MessageActivity.class);
+            intent.setClass(getActivity(), DemoViewerActivity.class);
             intent.putExtra("index", index);
             startActivity(intent);
         }

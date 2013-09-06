@@ -3,6 +3,10 @@
 
     <string name="app_name">Demo Chooser</string>
     
+    <string name="demo_chooser_label">Demo Chooser Activity</string>
+    
+    <string name="demo_viewer_label">Demo Viewer Activity</string>
+    
     <string name="action_settings">Settings</string>
     <string name="button_send">SEND</string>
     <string name="action_search">Serges</string>

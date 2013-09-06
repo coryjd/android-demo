@@ -17,11 +17,10 @@ public class DisplayMessageActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        
-        Log.i("info", "Creating DisplayMessageActivity!");
+        Log.i("info", this.getClass().getName() + " onCreate");
         
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MessageActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(MessageLogDemo.EXTRA_MESSAGE);
         
         Log.i("info", "Creating TextView!");
         

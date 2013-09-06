@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:hint="@string/edit_message"/>
     
+    <!--  Can't have the onClick from here, as it will look for the method in the parent activity, rather than the fragment -->
     <Button
+        android:id="@+id/messagelog_send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send"
-        android:onClick="sendMessage" />
+        android:text="@string/button_send" />
 
 </LinearLayout>
