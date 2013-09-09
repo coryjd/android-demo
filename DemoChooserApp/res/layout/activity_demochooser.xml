@@ -1,14 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:baselineAligned="false" >
+    android:layout_height="match_parent" >
     
+    <!--  Portrait Orientation Approach, Single Pane View -->
     <fragment android:name="com.example.myfirstapp.DemoListFragment"
               android:id="@+id/demolist"
-              android:layout_weight="1"
-              android:layout_width="0dp"
+              android:layout_width="match_parent"
               android:layout_height="match_parent" />
-
-</LinearLayout>
+    
+</FrameLayout>
