@@ -70,7 +70,7 @@ public class DemoListFragment extends ListFragment
         Log.i("info", "Demo selected: id: " + id + " pos: " + position);
         Log.i("info", "Item at position: " + l.getItemAtPosition(position));
         
-        if(currentDemo != position)
+        if(!mDualPane || currentDemo != position)
         {
             showDetails(position);
         }
