@@ -24,8 +24,8 @@ public class DemoViewerActivity extends Activity
         {
             Log.i("info", this.getClass().getName() + " Creating Demo Fragment");
             
-            //TODO: Get correct demo fragment to start
-            Fragment demoFragment = new MessageLogDemo();
+            String demoName = getIntent().getExtras().getString(DemoList.EXTRAS_DEMO_NAME);
+            Fragment demoFragment = DemoList.getDemo(demoName);
             
             getFragmentManager().beginTransaction().add(android.R.id.content, demoFragment).commit();
         }

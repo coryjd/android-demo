@@ -1,8 +1,5 @@
 package com.example.myfirstapp;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
@@ -19,17 +16,11 @@ public class DemoListFragment extends ListFragment
     
     private int currentDemo;
     
-    private Map<String, Fragment> demoMap = new HashMap<String, Fragment>();
-    
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         Log.i("info", this.getClass().getName() + " onCreate");
-        
-        //TODO: Expose this
-        addDemo("MessageLogDemo", new MessageLogDemo());
-        addDemo("MessageLogDemo2", new MessageLogDemo());
     }
     
     @Override
@@ -38,7 +29,8 @@ public class DemoListFragment extends ListFragment
         super.onActivityCreated(savedInstanceState);
         Log.i("info", this.getClass().getName() + " onActivityCreated");
         
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, getDemoTitles()));
+        Log.i("info", this.getClass().getName() + " Creating ListAdapter with " + DemoList.getDemoTitles().length + " items.");
+        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, DemoList.getDemoTitles()));
         
         View detailsFrame = getActivity().findViewById(R.id.demoview);
         mDualPane = detailsFrame != null && detailsFrame.getVisibility() == View.VISIBLE;
@@ -87,35 +79,21 @@ public class DemoListFragment extends ListFragment
         if(mDualPane)
         {
             getListView().setItemChecked(index, true);
-            //Fragment demoFragment = getFragmentManager().findFragmentById(R.id.demoview);
-            //if(demoFragment == null) 
-            {
-                //TODO: Get correct demo fragment to start
-                Fragment demoFragment = new MessageLogDemo();
-                
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.setBreadCrumbTitle("Demo:" + index);
-                ft.setBreadCrumbShortTitle("Demo:" + index);
-                ft.replace(R.id.demoview, demoFragment);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.commit();
-            }
+            
+            Fragment demoFragment = DemoList.getDemo(demoName);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.setBreadCrumbTitle("Demo:" + demoName);
+            ft.setBreadCrumbShortTitle("Demo:" + demoName);
+            ft.replace(R.id.demoview, demoFragment);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
         }
         else
         {
             Intent intent = new Intent();
             intent.setClass(getActivity(), DemoViewerActivity.class);
+            intent.putExtra(DemoList.EXTRAS_DEMO_NAME, demoName);
             startActivity(intent);
         }
-    }
-    
-    private void addDemo(String title, Fragment demo)
-    {
-        demoMap.put(title, demo);
-    }
-    
-    private String[] getDemoTitles()
-    {
-        return demoMap.keySet().toArray(new String[demoMap.keySet().size()]);
     }
 }
